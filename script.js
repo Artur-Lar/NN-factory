@@ -22,32 +22,46 @@ window.addEventListener("wheel", (event) => {
 
 let startY = 0;
 let endY = 0;
+const swipeThreshold = 50;
 
-window.addEventListener("touchstart", (event) => {
-  startY = event.touches[0].clientY;
-});
+window.addEventListener(
+  "touchstart",
+  (event) => {
+    startY = event.touches[0].clientY;
+  },
+  { passive: false }
+);
 
-window.addEventListener("touchmove", (event) => {
-  endY = event.touches[0].clientY;
-});
+window.addEventListener(
+  "touchmove",
+  (event) => {
+    event.preventDefault();
+    endY = event.touches[0].clientY;
+  },
+  { passive: false }
+);
 
-window.addEventListener("touchend", (event) => {
-  const deltaY = startY - endY;
+window.addEventListener(
+  "touchend",
+  () => {
+    const deltaY = startY - endY;
 
-  if (Math.abs(deltaY) > 50) {
-    if (deltaY > 0) {
-      if (currentSection < sections.length - 1) {
-        currentSection++;
-        scrollToSection(currentSection);
-      }
-    } else {
-      if (currentSection > 0) {
-        currentSection--;
-        scrollToSection(currentSection);
+    if (Math.abs(deltaY) > swipeThreshold) {
+      if (deltaY > 0) {
+        if (currentSection < sections.length - 1) {
+          currentSection++;
+          scrollToSection(currentSection);
+        }
+      } else {
+        if (currentSection > 0) {
+          currentSection--;
+          scrollToSection(currentSection);
+        }
       }
     }
-  }
-});
+  },
+  { passive: false }
+);
 
 const burgerMenu = document.getElementById("burger-menu");
 const mobileNav = document.getElementById("mobile-nav");
