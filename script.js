@@ -31,16 +31,20 @@ window.addEventListener("touchmove", (event) => {
   endY = event.touches[0].clientY;
 });
 
-window.addEventListener("touchend", () => {
-  if (startY > endY + 50) {
-    if (currentSection < sections.length - 1) {
-      currentSection++;
-      scrollToSection(currentSection);
-    }
-  } else if (startY < endY - 50) {
-    if (currentSection > 0) {
-      currentSection--;
-      scrollToSection(currentSection);
+window.addEventListener("touchend", (event) => {
+  const deltaY = startY - endY;
+
+  if (Math.abs(deltaY) > 50) {
+    if (deltaY > 0) {
+      if (currentSection < sections.length - 1) {
+        currentSection++;
+        scrollToSection(currentSection);
+      }
+    } else {
+      if (currentSection > 0) {
+        currentSection--;
+        scrollToSection(currentSection);
+      }
     }
   }
 });
