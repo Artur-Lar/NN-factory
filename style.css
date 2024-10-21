@@ -25,6 +25,8 @@ body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
+  overflow: hidden;
 }
 .container {
   max-width: 1900px;
@@ -42,16 +44,17 @@ body {
   position: fixed;
   top: 0;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-30%);
   height: 80px;
   align-items: center;
-  justify-content: space-between;
   z-index: 1000;
 }
 .logo {
   display: flex;
   align-items: center;
   text-decoration: none;
+  margin-top: 10px;
+  margin-left: 10px;
 }
 .logo img {
   width: 40px;
@@ -87,22 +90,14 @@ body {
 .header-phone {
   margin-left: 1%;
 }
-.vertical-line {
-  position: fixed;
-  top: 0;
-  left: 235px;
-  width: 1px;
-  height: 100vh;
-  background-color: white;
-  z-index: 500;
-}
 .side-nav {
   position: fixed;
-  top: 100px;
+  top: 0;
   left: 1;
   width: 220px;
   height: 100%;
   z-index: 1000;
+  border-right: 1px white solid;
 }
 
 .side-nav ul {
@@ -113,7 +108,6 @@ body {
 }
 .side-nav ul li {
   height: 50px;
-  width: 100%;
   display: flex;
   align-items: center;
   padding-left: 15px;
@@ -187,7 +181,13 @@ body {
   width: 100%;
   height: auto;
 }
-.form-btn {
+.button-block {
+  display: flex;
+  max-width: 550px;
+  justify-content: space-between;
+}
+.form-btn,
+.first-slide-btn {
   width: 200px;
   height: 48px;
   display: flex;
